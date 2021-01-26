@@ -1,0 +1,98 @@
+[
+	{
+		"id": "1",
+		"shortname": "JHR",
+		"name": "Johor",
+		"iso": "MY-01"
+	},
+	{
+		"id": "2",
+		"shortname": "KDH",
+		"name": "Kedah",
+		"iso": "MY-02"
+	},
+	{
+		"id": "3",
+		"shortname": "KTN",
+		"name": "Kelantan",
+		"iso": "MY-03"
+	},
+	{
+		"id": "4",
+		"shortname": "MLK",
+		"name": "Melaka",
+		"iso": "MY-04"
+	},
+	{
+		"id": "5",
+		"shortname": "NSN",
+		"name": "Negeri Sembilan",
+		"iso": "MY-05"
+	},
+	{
+		"id": "6",
+		"shortname": "PHG",
+		"name": "Pahang",
+		"iso": "MY-06"
+	},
+	{
+		"id": "7",
+		"shortname": "PNG",
+		"name": "Pulau Pinang",
+		"iso": "MY-07"
+	},
+	{
+		"id": "8",
+		"shortname": "PRK",
+		"name": "Perak",
+		"iso": "MY-08"
+	},
+	{
+		"id": "9",
+		"shortname": "PLS",
+		"name": "Perlis",
+		"iso": "MY-09"
+	},
+	{
+		"id": "10",
+		"shortname": "SGR",
+		"name": "Selangor",
+		"iso": "MY-10"
+	},
+	{
+		"id": "11",
+		"shortname": "TRG",
+		"name": "Terengganu",
+		"iso": "MY-11"
+	},
+	{
+		"id": "12",
+		"shortname": "SBH",
+		"name": "Sabah",
+		"iso": "MY-12"
+	},
+	{
+		"id": "13",
+		"shortname": "SWK",
+		"name": "Sarawak",
+		"iso": "MY-13"
+	},
+	{
+		"id": "14",
+		"shortname": "KUL",
+		"name": "Kuala Lumpur",
+		"iso": "MY-14"
+	},
+	{
+		"id": "15",
+		"shortname": "LBN",
+		"name": "Labuan",
+		"iso": "MY-15"
+	},
+	{
+		"id": "16",
+		"shortname": "PJY",
+		"name": "Putrajaya",
+		"iso": "MY-16"
+	}
+]
