@@ -8,7 +8,7 @@
             "email": "shukriyusof65@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "beta",
     "require": {
         "php": "^7.3",
         "phpunit/phpunit": "^9.5"
