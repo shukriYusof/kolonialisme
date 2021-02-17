@@ -3,10 +3,70 @@
 class State {
 
     public static function getAllStates(){
-        $states = file_get_contents(__DIR__.'/inc/state.json');
-        $states = json_decode($states,true);
+        $listingStates = file_get_contents(__DIR__.'/inc/state.json');
+        $listingStates = json_decode($listingStates,true);
         
-        return $states;
+        return $listingStates;
+    }
+
+    public static function getStateByShortname($params):array {
+        $listingStates = file_get_contents(__DIR__.'/inc/state.json');
+        $listingStates = json_decode($listingStates,true);
+
+        foreach ($listingStates as $state) {
+            if(!empty($params)){
+                if($state['shortname'] == $params){
+                    return $state;
+                }
+            }
+        }
+
+        return $state;
+    }
+
+    public static function getStateByName($params):array {
+        $listingStates = file_get_contents(__DIR__.'/inc/state.json');
+        $listingStates = json_decode($listingStates,true);
+
+        foreach ($listingStates as $state) {
+            if(!empty($params)){
+                if($state['name'] == $params){
+                    return $state;
+                }
+            }
+        }
+
+        return $state;
+    }
+
+    public static function getStateById($params):array {
+        $listingStates = file_get_contents(__DIR__.'/inc/state.json');
+        $listingStates = json_decode($listingStates,true);
+
+        foreach ($listingStates as $state) {
+            if(!empty($params)){
+                if($state['id'] == $params){
+                    return $state;
+                }
+            }
+        }
+
+        return $state;
+    }
+
+    public static function getStateByIso($params):array {
+        $listingStates = file_get_contents(__DIR__.'/inc/state.json');
+        $listingStates = json_decode($listingStates,true);
+
+        foreach ($listingStates as $state) {
+            if(!empty($params)){
+                if($state['iso'] == $params){
+                    return $state;
+                }
+            }
+        }
+
+        return $state;
     }
 }
 
