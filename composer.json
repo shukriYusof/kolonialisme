@@ -1,7 +1,7 @@
 {
     "name": "shukriyusof/malaysia",
     "type": "library",
-    "license": "GNU",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Shukri Yusof",
