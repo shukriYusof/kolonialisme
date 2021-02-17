@@ -9,5 +9,8 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {
+        "php": "^7.3",
+        "phpunit/phpunit": "^9.5"
+    }
 }
