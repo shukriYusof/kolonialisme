@@ -14,10 +14,8 @@ class State {
         $listingStates = json_decode($listingStates,true);
 
         foreach ($listingStates as $state) {
-            if(!empty($params)){
-                if($state['shortname'] == $params){
-                    return $state;
-                }
+            if(!empty($params) && ($state['shortname'] == $params)){
+                return $state;
             }
         }
 
@@ -29,10 +27,8 @@ class State {
         $listingStates = json_decode($listingStates,true);
 
         foreach ($listingStates as $state) {
-            if(!empty($params)){
-                if($state['name'] == $params){
-                    return $state;
-                }
+            if(!empty($params) && ($state['name'] == $params)){
+                return $state;
             }
         }
 
@@ -44,10 +40,8 @@ class State {
         $listingStates = json_decode($listingStates,true);
 
         foreach ($listingStates as $state) {
-            if(!empty($params)){
-                if($state['id'] == $params){
+            if(!empty($params) && $state['id'] == $params){
                     return $state;
-                }
             }
         }
 
@@ -59,10 +53,8 @@ class State {
         $listingStates = json_decode($listingStates,true);
 
         foreach ($listingStates as $state) {
-            if(!empty($params)){
-                if($state['iso'] == $params){
+            if(!empty($params) && ($state['iso'] == $params)){
                     return $state;
-                }
             }
         }
 
@@ -72,10 +64,52 @@ class State {
 
 class District {
     public static function getAllDistricts(){
-        $districts = file_get_contents(__DIR__.'/inc/district.json');
-        $districts = json_decode($districts,true);
+        $listingDistricts = file_get_contents(__DIR__.'/inc/district.json');
+        $listingDistricts = json_decode($listingDistricts,true);
         
-        return $districts;
+        return $listingDistricts;
+    }
+
+    // 2)getDistrictById
+    public static function getDistrictById($params):array {
+        $listingDistricts = file_get_contents(__DIR__.'/inc/district.json');
+        $listingDistricts = json_decode($listingDistricts,true);
+
+        foreach ($listingDistricts as $district) {
+            if(!empty($params) && ($params ==  $district['id'])){
+                return $district;
+            }
+        }
+
+        return $district;
+    }
+
+    // 3)getDistrictByName
+    public static function getDistrictByName($params):array {
+        $listingDistricts = file_get_contents(__DIR__.'/inc/district.json');
+        $listingDistricts = json_decode($listingDistricts,true);
+
+        foreach ($listingDistricts as $district) {
+            if(!empty($params) && ($params ==  $district['name'])){
+                return $district;
+            }
+        }
+
+        return $district;
+    }
+
+    // 4)getDistrictByStateId
+    public static function getDistrictByStateId($params):array {
+        $listingDistricts = file_get_contents(__DIR__.'/inc/district.json');
+        $listingDistricts = json_decode($listingDistricts,true);
+
+        foreach ($listingDistricts as $district) {
+            if(!empty($params) && ($params ==  $district['state_id'])){
+                return $district;
+            }
+        }
+
+        return $district;
     }
 }
 
@@ -89,17 +123,16 @@ class School {
     }
 
     // return school details based on id of school
-    public static function getSchoolById($params):array{
+    public static function getSchoolById($params):array {
         $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
         $listingSchools = json_decode($listingSchools,true);
      
-        if(!empty($params)){
-            foreach( $listingSchools as $school ) {
-                if($school['id'] == $params){
-                    return $school;
-                }
+        foreach( $listingSchools as $school ) {
+            if(!empty($params) && ($school['id'] == $params)){
+                return $school;
             }
         }
+
         return $school;
     }
 
@@ -109,13 +142,12 @@ class School {
         $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
         $listingSchools = json_decode($listingSchools,true);
      
-        if(!empty($params)){
-            foreach( $listingSchools as $school ) {
-                if($school['level'] == $params){
-                    array_push($schools,$school);
-                }
+        foreach( $listingSchools as $school ) {
+            if(!empty($params) && ($school['level'] == $params)){
+                array_push($schools,$school);
             }
         }
+
         return $schools;
     }
 
@@ -125,13 +157,13 @@ class School {
         $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
         $listingSchools = json_decode($listingSchools,true);
      
-        if(!empty($params)){
-            foreach( $listingSchools as $school ) {
-                if($school['district_id'] == $params){
-                    array_push($schools,$school);
-                }
+        foreach( $listingSchools as $school ) {
+            if(!empty($params) && ($school['district_id'] == $params)){
+        
+                array_push($schools,$school);
             }
         }
+        
         return $schools;
     }
 
@@ -141,13 +173,12 @@ class School {
         $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
         $listingSchools = json_decode($listingSchools,true);
      
-        if(!empty($params)){
-            foreach( $listingSchools as $school ) {
-                if($school['city'] == $params){
-                    array_push($schools,$school);
-                }
+        foreach( $listingSchools as $school ) {
+            if(!empty($params) && ($school['city'] == $params)){
+                array_push($schools,$school);
             }
         }
+
         return $schools;
     }
 
@@ -156,13 +187,12 @@ class School {
         $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
         $listingSchools = json_decode($listingSchools,true);
      
-        if(!empty($params)){
-            foreach( $listingSchools as $school ) {
-                if($school['postcode'] == $params){
-                    array_push($schools,$school);
-                }
+        foreach( $listingSchools as $school ) {
+            if(!empty($params) && ($school['postcode'] == $params)){
+                array_push($schools,$school);
             }
         }
+
         return $schools;
     }
 
@@ -180,11 +210,9 @@ class School {
         $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
         $listingSchools = json_decode($listingSchools,true);
      
-        if(!empty($params)){
-            foreach( $listingSchools as $school ) {
-                if($school['level'] == $params){
-                    array_push($schools,$school);
-                }
+        foreach( $listingSchools as $school ) {
+            if(!empty($params) && ($school['level'] == $params)){
+                array_push($schools,$school);
             }
         }
 
@@ -197,11 +225,9 @@ class School {
         $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
         $listingSchools = json_decode($listingSchools,true);
      
-        if(!empty($params)){
-            foreach( $listingSchools as $school ) {
-                if($school['district_id'] == $params){
-                    array_push($schools,$school);
-                }
+        foreach( $listingSchools as $school ) {
+            if(!empty($params) && ($school['district_id'] == $params)){
+                array_push($schools,$school);
             }
         }
 
@@ -214,11 +240,9 @@ class School {
         $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
         $listingSchools = json_decode($listingSchools,true);
      
-        if(!empty($params)){
-            foreach( $listingSchools as $school ) {
-                if($school['city'] == $params){
-                    array_push($schools,$school);
-                }
+        foreach( $listingSchools as $school ) {
+            if(!empty($params) && ($school['city'] == $params)){
+                array_push($schools,$school);
             }
         }
 
@@ -231,11 +255,9 @@ class School {
         $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
         $listingSchools = json_decode($listingSchools,true);
      
-        if(!empty($params)){
-            foreach( $listingSchools as $school ) {
-                if($school['postcode'] == $params){
-                    array_push($schools,$school);
-                }
+        foreach( $listingSchools as $school ) {
+            if(!empty($params) && ($school['postcode'] == $params)){
+                array_push($schools,$school);
             }
         }
 
