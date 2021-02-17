@@ -1,0 +1,13 @@
+{
+    "name": "shukriyusof/malaysia",
+    "type": "library",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Shukri Yusof",
+            "email": "shukriyusof65@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
