@@ -1,5 +1,5 @@
 codecov:
-  token: "<some token here>"
+  token: "42d23c0e-1d2f-4301-9904-aa1101e979ae"
   bot: "codecov-io"
   ci:
     - "travis.org"
@@ -10,6 +10,7 @@ codecov:
   notify:
     after_n_builds: 2
     wait_for_ci: yes
-  coverage:
-    precision: 2
-    round: down
+coverage:
+  precision: 2
+  range: 90..100
+  round: down
