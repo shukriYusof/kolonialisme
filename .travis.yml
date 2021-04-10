@@ -1,9 +1,11 @@
 language: php
 
- "os": [
-    "linux"
-],
-"dist": "xenial",
+os: 
+    - linux
+
+dist: 
+    - xenial
+    - focal fossa
 
 php:
     - 7.3
