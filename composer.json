@@ -1,7 +1,8 @@
 {
-    "name": "shukriyusof/malaysia",
+    "name": "shukriyusof/kolonialisme",
     "type": "library",
     "license": "GPL-2.0-or-later",
+    "description": "This package was build for anyone want to find schools in Malaysia",
     "authors": [
         {
             "name": "Shukri Yusof",
@@ -10,7 +11,12 @@
     ],
     "minimum-stability": "beta",
     "require": {
-        "php": "^7.3",
+        "php": "^7.3 || ^8.0",
         "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Shukriyusof\\Kolonialisme\\": "src/"
+        }
     }
 }
