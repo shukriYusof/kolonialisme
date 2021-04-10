@@ -1,4 +1,6 @@
 <?php
+namespace shukriyusof\kolonialisme;
+
 use PHPUnit\Framework\TestCase;
 use shukriyusof\kolonialisme\School;
 
