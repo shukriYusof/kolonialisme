@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "shukriyusof\\kolonialisme\\": "src/"
+            "Shukriyusof\\Kolonialisme\\": "src/"
         }
     }
 }

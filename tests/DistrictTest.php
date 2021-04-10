@@ -1,8 +1,8 @@
 <?php
-namespace shukriyusof\kolonialisme;
+namespace Shukriyusof\Kolonialisme;
 
 use PHPUnit\Framework\TestCase;
-use shukriyusof\kolonialisme\District;
+use Shukriyusof\Kolonialisme\District;
 
 final class DistrictTest extends TestCase
 {

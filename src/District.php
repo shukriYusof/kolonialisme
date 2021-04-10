@@ -1,6 +1,5 @@
 <?php
-
-namespace shukriyusof\kolonialisme;
+namespace Shukriyusof\Kolonialisme;
 
 class District {
     public static function getAllDistricts(){

@@ -6,7 +6,7 @@
     namespace App\Http\Controllers;
     
     use Illuminate\Http\Request;
-    use shukriyusof\kolonialisme\State;
+    use Shukriyusof\Kolonialisme\State;
     
     class StateController extends Controller
     {

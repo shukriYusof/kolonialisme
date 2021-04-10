@@ -1,8 +1,8 @@
 <?php
-namespace shukriyusof\kolonialisme;
+namespace Shukriyusof\Kolonialisme;
 
 use PHPUnit\Framework\TestCase;
-use shukriyusof\kolonialisme\School;
+use Shukriyusof\Kolonialisme\School;
 
 final class SchoolTest extends TestCase
 {
