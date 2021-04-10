@@ -1,4 +1,5 @@
 <?php
+namespace shukriyusof\kolonialisme;
 
 class State {
 
