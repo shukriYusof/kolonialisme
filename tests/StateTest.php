@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-require_once ('index.php');
+use shukriyusof\kolonialisme\State;
 
 final class StateTest extends TestCase
 {
