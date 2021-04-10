@@ -2,6 +2,7 @@
     "name": "shukriyusof/kolonialisme",
     "type": "library",
     "license": "GPL-2.0-or-later",
+    "description": "This package was build for anyone want to find schools in Malaysia",
     "authors": [
         {
             "name": "Shukri Yusof",
