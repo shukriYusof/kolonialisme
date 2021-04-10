@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/shukriYusof/malaysia.svg?branch=main)](https://travis-ci.com/shukriYusof/malaysia)
-![workflow](https://github.com/shukriYusof/malaysia/actions/workflows/php.yml/badge.svg)
+![workflow](https://github.com/shukriYusof/kolonialisme/actions/workflows/php.yml/badge.svg)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![codecov](https://codecov.io/gh/shukriYusof/malaysia/branch/dev/graph/badge.svg?token=C4P3QPA6N1)](https://codecov.io/gh/shukriYusof/malaysia)
