@@ -1,4 +1,6 @@
 # **Kolonialisme**
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FshukriYusof%2Fmalaysia.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FshukriYusof%2Fmalaysia?ref=badge_shield)
+
 
 **Kolonialisme** is prepared for anyone that are having a trouble to find all schools in Malaysia. Using **Kolonialisme** user can found schools , district and state also. You can see the example below it is very easy to use.
 
@@ -70,3 +72,7 @@ School
 - getCountSchoolByDistrictId
 - getCountSchoolByCity
 - getCountSchoolByPostcode
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FshukriYusof%2Fmalaysia.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FshukriYusof%2Fmalaysia?ref=badge_large)
