@@ -1,155 +1,97 @@
 <?php
 namespace Shukriyusof\Kolonialisme;
 
-class School {
-    // return all schools without any requirement
-    public static function getAllSchools(){
-        $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
-        $listingSchools = json_decode($listingSchools,true);
-        
-        return $listingSchools;
+class School
+{
+    private static $listingSchools;
+
+    private static function loadSchools()
+    {
+        if (self::$listingSchools === null) {
+            self::$listingSchools = json_decode(
+                file_get_contents(__DIR__ . '/inc/school.json'),
+                true
+            );
+        }
     }
 
-    // return school details based on id of school
-    public static function getSchoolById($params):array {
-        $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
-        $listingSchools = json_decode($listingSchools,true);
-     
-        foreach( $listingSchools as $school ) {
-            if(!empty($params) && ($school['id'] == $params)){
+    private static function getSchools(): array
+    {
+        self::loadSchools();
+        return self::$listingSchools;
+    }
+
+    public static function getAllSchools(): array
+    {
+        return self::getSchools();
+    }
+
+    public static function getSchoolById($schoolId): array
+    {
+        foreach (self::getSchools() as $school) {
+            if (!empty($schoolId) && ($schoolId == $school['id'])) {
                 return $school;
             }
         }
 
-        return $school;
+        return [];
     }
 
-    // return list of schools within the level.
-    public static function getSchoolByLevel($params):array {
+    public static function getSchoolsByLevel($level): array
+    {
+        return self::getFilteredSchools('level', $level);
+    }
+
+    public static function getSchoolsByDistrictId($districtId): array
+    {
+        return self::getFilteredSchools('district_id', $districtId);
+    }
+
+    public static function getSchoolsByCity($city): array
+    {
+        return self::getFilteredSchools('city', $city);
+    }
+
+    public static function getSchoolsByPostcode($postcode): array
+    {
+        return self::getFilteredSchools('postcode', $postcode);
+    }
+
+    public static function getCountAllSchools(): int
+    {
+        return count(self::getSchools());
+    }
+
+    public static function getCountSchoolsByLevel($level): int
+    {
+        return count(self::getFilteredSchools('level', $level));
+    }
+
+    public static function getCountSchoolsByDistrictId($districtId): int
+    {
+        return count(self::getFilteredSchools('district_id', $districtId));
+    }
+
+    public static function getCountSchoolsByCity($city): int
+    {
+        return count(self::getFilteredSchools('city', $city));
+    }
+
+    public static function getCountSchoolsByPostcode($postcode): int
+    {
+        return count(self::getFilteredSchools('postcode', $postcode));
+    }
+
+    private static function getFilteredSchools($field, $value): array
+    {
         $schools = [];
-        $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
-        $listingSchools = json_decode($listingSchools,true);
-     
-        foreach( $listingSchools as $school ) {
-            if(!empty($params) && ($school['level'] == $params)){
-                array_push($schools,$school);
+
+        foreach (self::getSchools() as $school) {
+            if (!empty($value) && ($value == $school[$field])) {
+                $schools[] = $school;
             }
         }
 
         return $schools;
-    }
-
-    // return list of schools in within district area
-    public static function getSchoolByDistrictId($params):array {
-        $schools = [];
-        $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
-        $listingSchools = json_decode($listingSchools,true);
-     
-        foreach( $listingSchools as $school ) {
-            if(!empty($params) && ($school['district_id'] == $params)){
-        
-                array_push($schools,$school);
-            }
-        }
-        
-        return $schools;
-    }
-
-
-    public static function getSchoolByCity($params):array {
-        $schools = [];
-        $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
-        $listingSchools = json_decode($listingSchools,true);
-     
-        foreach( $listingSchools as $school ) {
-            if(!empty($params) && ($school['city'] == $params)){
-                array_push($schools,$school);
-            }
-        }
-
-        return $schools;
-    }
-
-    public static function getSchoolByPostcode($params):array{
-        $schools = [];
-        $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
-        $listingSchools = json_decode($listingSchools,true);
-     
-        foreach( $listingSchools as $school ) {
-            if(!empty($params) && ($school['postcode'] == $params)){
-                array_push($schools,$school);
-            }
-        }
-
-        return $schools;
-    }
-
-    public static function getCountAllSchools():int {
-        $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
-        $listingSchools = json_decode($listingSchools,true);
-
-        $count  = (int) count($listingSchools);
-
-        return $count;
-    }
-
-    public static function getCountSchoolByLevel($params):int {
-        $schools = [];
-        $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
-        $listingSchools = json_decode($listingSchools,true);
-     
-        foreach( $listingSchools as $school ) {
-            if(!empty($params) && ($school['level'] == $params)){
-                array_push($schools,$school);
-            }
-        }
-
-        $count  = (int) count( $schools);
-        return  $count;
-    }
-
-    public static function getCountSchoolByDistrictId($params):int {
-        $schools = [];
-        $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
-        $listingSchools = json_decode($listingSchools,true);
-     
-        foreach( $listingSchools as $school ) {
-            if(!empty($params) && ($school['district_id'] == $params)){
-                array_push($schools,$school);
-            }
-        }
-
-        $count  = (int) count( $schools);
-        return  $count;
-    }
-
-    public static function getCountSchoolByCity($params):int {
-        $schools = [];
-        $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
-        $listingSchools = json_decode($listingSchools,true);
-     
-        foreach( $listingSchools as $school ) {
-            if(!empty($params) && ($school['city'] == $params)){
-                array_push($schools,$school);
-            }
-        }
-
-        $count  = (int) count( $schools);
-        return  $count;
-    }
-
-    public static function getCountSchoolByPostcode($params):int {
-        $schools = [];
-        $listingSchools = file_get_contents(__DIR__.'/inc/school.json');
-        $listingSchools = json_decode($listingSchools,true);
-     
-        foreach( $listingSchools as $school ) {
-            if(!empty($params) && ($school['postcode'] == $params)){
-                array_push($schools,$school);
-            }
-        }
-
-        $count  = (int) count( $schools);
-        return  $count;
     }
 }

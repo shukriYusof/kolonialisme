@@ -1,53 +1,61 @@
 <?php
 namespace Shukriyusof\Kolonialisme;
 
-class District {
-    public static function getAllDistricts(){
-        $listingDistricts = file_get_contents( __DIR__ . '/inc/district.json');
-        $listingDistricts = json_decode($listingDistricts,true);
-        
-        return $listingDistricts;
+class District
+{
+    private static $listingDistricts;
+
+    private static function loadDistricts()
+    {
+        if (self::$listingDistricts === null) {
+            self::$listingDistricts = json_decode(
+                file_get_contents(__DIR__ . '/inc/district.json'),
+                true
+            );
+        }
     }
 
-    // 2)getDistrictById
-    public static function getDistrictById($params):array {
-        $listingDistricts = file_get_contents( __DIR__ .'/inc/district.json');
-        $listingDistricts = json_decode($listingDistricts,true);
+    private static function getDistricts(): array
+    {
+        self::loadDistricts();
+        return self::$listingDistricts;
+    }
 
-        foreach ($listingDistricts as $district) {
-            if(!empty($params) && ($params ==  $district['id'])){
+    public static function getAllDistricts(): array
+    {
+        return self::getDistricts();
+    }
+
+    public static function getDistrictById($districtId): array
+    {
+        foreach (self::getDistricts() as $district) {
+            if (!empty($districtId) && ($districtId == $district['id'])) {
                 return $district;
             }
         }
 
-        return $district;
+        return [];
     }
 
-    // 3)getDistrictByName
-    public static function getDistrictByName($params):array {
-        $listingDistricts = file_get_contents( __DIR__ .'/inc/district.json');
-        $listingDistricts = json_decode($listingDistricts,true);
-
-        foreach ($listingDistricts as $district) {
-            if(!empty($params) && ($params ==  $district['name'])){
+    public static function getDistrictByName($districtName): array
+    {
+        foreach (self::getDistricts() as $district) {
+            if (!empty($districtName) && ($districtName == $district['name'])) {
                 return $district;
             }
         }
 
-        return $district;
+        return [];
     }
 
-    // 4)getDistrictByStateId
-    public static function getDistrictByStateId($params):array {
-        $listingDistricts = file_get_contents( __DIR__ . '/inc/district.json');
-        $listingDistricts = json_decode($listingDistricts,true);
-
-        foreach ($listingDistricts as $district) {
-            if(!empty($params) && ($params ==  $district['state_id'])){
+    public static function getDistrictByStateId($stateId): array
+    {
+        foreach (self::getDistricts() as $district) {
+            if (!empty($stateId) && ($stateId == $district['state_id'])) {
                 return $district;
             }
         }
 
-        return $district;
+        return [];
     }
 }
