@@ -6,93 +6,186 @@ use Shukriyusof\Kolonialisme\School;
 
 final class SchoolTest extends TestCase
 {
-    public function testGetAllSchool(){
-        return $this->assertIsArray(School::getAllSchools());
+    public function testGetAllSchool()
+    {
+        $this->assertIsArray(School::getAllSchools());
     }
 
-    public function testGetAllSchoolById(){
+    /**
+     * @dataProvider schoolIdProvider
+     */
+    public function testGetSchoolById($schoolId, $expected)
+    {
+        $res = School::getSchoolById($schoolId);
+        $this->assertEquals($expected, $res);
+    }
 
-        $res = School::getSchoolById(6616);
-
-        $expected = [
-            "id" => "6616",
-            "district_id" => "124",
-            "name" => "SEKOLAH KEBANGSAAN SENTOSA SIBU",
-            "schoolcode" => "YBA3105",
-            "level" => "Rendah",
-            "address" => "LOT 513 BLOK 9 JALAN SENTOSA OFF JALAN SALIM ",
-            "postcode" => "96000",
-            "city" => "SIBU",
-            "email" => "YBA3105@moe.edu.my",
-            "coordinatexx" => "111.8652667",
-            "coordinateyy" => "2.270433333"
+    public function schoolIdProvider()
+    {
+        return [
+            [
+                6616,
+                [
+                    "id" => "6616",
+                    "district_id" => "124",
+                    "name" => "SEKOLAH KEBANGSAAN SENTOSA SIBU",
+                    "schoolcode" => "YBA3105",
+                    "level" => "Rendah",
+                    "address" => "LOT 513 BLOK 9 JALAN SENTOSA OFF JALAN SALIM ",
+                    "postcode" => "96000",
+                    "city" => "SIBU",
+                    "email" => "YBA3105@moe.edu.my",
+                    "coordinatexx" => "111.8652667",
+                    "coordinateyy" => "2.270433333",
+                ]
+            ],
+            // Add more test cases as needed
         ];
-
-        return $this->assertEquals( $expected, $res );
     }
 
-    public function testGetSchoolByLevel() {
-        $this->assertIsArray(School::getSchoolByLevel("Menengah"));
+    /**
+     * @dataProvider levelProvider
+     */
+    public function testGetSchoolByLevel($level, $expectedCount)
+    {
+        $schools = School::getSchoolsByLevel($level);
+        $this->assertIsArray($schools);
+        $this->assertCount($expectedCount, $schools);
     }
 
-    public function testGetSchoolByDistrictId() {
-        $this->assertIsArray(School::getSchoolByDistrictId(1));
+    public function levelProvider()
+    {
+        return [
+            ["Menengah", 2439],
+            // Add more test cases as needed
+        ];
     }
 
-    public function testGetSchoolByCity() {
-        $this->assertIsArray(School::getSchoolByCity("CHENDERIANG"));
+    /**
+     * @dataProvider districtIdProvider
+     */
+    public function testGetSchoolByDistrictId($districtId, $expectedCount)
+    {
+        $schools = School::getSchoolsByDistrictId($districtId);
+        $this->assertIsArray($schools);
+        $this->assertCount($expectedCount, $schools);
     }
 
-    public function testGetSchoolByPostcode() {
-        $this->assertIsArray(School::getSchoolByPostcode(35000));
+    public function districtIdProvider()
+    {
+        return [
+            [1, 122],
+            // Add more test cases as needed
+        ];
     }
 
-    public function testGetCountAllSchools(){
+    /**
+     * @dataProvider cityProvider
+     */
+    public function testGetSchoolByCity($city, $expectedCount)
+    {
+        $schools = School::getSchoolsByCity($city);
+        $this->assertIsArray($schools);
+        $this->assertCount($expectedCount, $schools);
+    }
 
+    public function cityProvider()
+    {
+        return [
+            ["CHENDERIANG", 4],
+            // Add more test cases as needed
+        ];
+    }
+
+    /**
+     * @dataProvider postcodeProvider
+     */
+    public function testGetSchoolByPostcode($postcode, $expectedCount)
+    {
+        $schools = School::getSchoolsByPostcode($postcode);
+        $this->assertIsArray($schools);
+        $this->assertCount($expectedCount, $schools);
+    }
+
+    public function postcodeProvider()
+    {
+        return [
+            [35000, 19],
+            // Add more test cases as needed
+        ];
+    }
+
+    public function testGetCountAllSchools()
+    {
         $res = School::getCountAllSchools();
-
-        $expected = 10218;
-
-        return $this->assertEquals( $expected, $res );
+        $this->assertEquals(10218, $res);
     }
 
-    public function testGetCountSchoolByLevel(){
-
-        $res = School::getCountSchoolByLevel("Menengah");
-
-        $expected = 2439;
-
-        return $this->assertEquals( $expected, $res );
+    /**
+     * @dataProvider countLevelProvider
+     */
+    public function testGetCountSchoolByLevel($level, $expected)
+    {
+        $res = School::getCountSchoolsByLevel($level);
+        $this->assertEquals($expected, $res);
     }
 
-    public function testGetCountSchoolByDistrictId(){
-
-        $res = School::getCountSchoolByDistrictId(1);
-
-        $expected = 122;
-
-        return $this->assertEquals( $expected, $res );
+    public function countLevelProvider()
+    {
+        return [
+            ["Menengah", 2439],
+            // Add more test cases as needed
+        ];
     }
 
-    public function testGetCountSchoolByCity(){
-
-        $res = School::getCountSchoolByCity("CHENDERIANG");
-
-        $expected = 4;
-
-        return $this->assertEquals( $expected, $res );
+    /**
+     * @dataProvider countDistrictProvider
+     */
+    public function testGetCountSchoolByDistrictId($districtId, $expected)
+    {
+        $res = School::getCountSchoolsByDistrictId($districtId);
+        $this->assertEquals($expected, $res);
     }
 
-    public function testGetCountSchoolByPostcode(){
-
-        $res = School::getCountSchoolByPostcode(35000);
-
-        $expected = 19;
-
-        return $this->assertEquals( $expected, $res );
+    public function countDistrictProvider()
+    {
+        return [
+            [1, 122],
+            // Add more test cases as needed
+        ];
     }
 
+    /**
+     * @dataProvider countCityProvider
+     */
+    public function testGetCountSchoolByCity($city, $expected)
+    {
+        $res = School::getCountSchoolsByCity($city);
+        $this->assertEquals($expected, $res);
+    }
 
+    public function countCityProvider()
+    {
+        return [
+            ["CHENDERIANG", 4],
+            // Add more test cases as needed
+        ];
+    }
 
-    
+    /**
+     * @dataProvider countPostcodeProvider
+     */
+    public function testGetCountSchoolByPostcode($postcode, $expected)
+    {
+        $res = School::getCountSchoolsByPostcode($postcode);
+        $this->assertEquals($expected, $res);
+    }
+
+    public function countPostcodeProvider()
+    {
+        return [
+            [35000, 19],
+            // Add more test cases as needed
+        ];
+    }
 }

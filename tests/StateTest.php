@@ -1,4 +1,5 @@
 <?php
+
 namespace Shukriyusof\Kolonialisme;
 
 use PHPUnit\Framework\TestCase;
@@ -8,58 +9,90 @@ final class StateTest extends TestCase
 {
     public function testGetAllStates()
     {
-        return $this->assertIsArray(State::getAllStates());
+        $this->assertIsArray(State::getAllStates());
     }
 
-    public function testGetStateByName()
+    /**
+     * @dataProvider stateDataProvider
+     */
+    public function testGetStateByName($name, $expected)
     {
-        $res = State::getStateByName('Terengganu');
-        $expected = [
-            "id" => "11",
-            "shortname" => "TRG",
-            "name" => "Terengganu",
-            "iso" => "MY-11"
-        ];
-
-        return $this->assertEquals( $expected, $res );
+        $res = State::getStateByName($name);
+        $this->assertEquals($expected, $res, "Failed for $name");
     }
 
-    public function testGetStateByShortName()
+    /**
+     * @dataProvider stateShortNameDataProvider
+     */
+    public function testGetStateByShortName($shortname, $expected)
     {
-        $res = State::getStateByShortname('SGR');
-        $expected = [
-            "id" => "10",
-            "shortname" => "SGR",
-            "name" => "Selangor",
-            "iso" => "MY-10"
-        ];
-
-        return $this->assertEquals( $expected, $res );
+        $res = State::getStateByShortname($shortname);
+        $this->assertEquals($expected, $res, "Failed for $shortname");
     }
 
-    public function testGetStateById()
+    /**
+     * @dataProvider stateIdDataProvider
+     */
+    public function testGetStateById($id, $expected)
     {
-        $res = State::getStateById(5);
-        $expected = [
-            "id" => "5",
-            "shortname" => "NSN",
-            "name" => "Negeri Sembilan",
-            "iso" => "MY-05"
-        ];
-
-        return $this->assertEquals( $expected, $res );
+        $res = State::getStateById($id);
+        $this->assertEquals($expected, $res, "Failed for ID $id");
     }
 
-    public function testGetStateByIso()
+    /**
+     * @dataProvider stateIsoDataProvider
+     */
+    public function testGetStateByIso($iso, $expected)
     {
-        $res = State::getStateByIso('MY-06');
-        $expected = [
-            "id" => "6",
-            "shortname" => "PHG",
-            "name" => "Pahang",
-            "iso" => "MY-06"
-        ];
+        $res = State::getStateByIso($iso);
+        $this->assertEquals($expected, $res, "Failed for ISO $iso");
+    }
 
-        return $this->assertEquals( $expected, $res );
+    public function stateDataProvider()
+    {
+        return [
+            ['Terengganu', [
+                "id" => "11",
+                "shortname" => "TRG",
+                "name" => "Terengganu",
+                "iso" => "MY-11"
+            ]]
+        ];
+    }
+
+    public function stateShortNameDataProvider()
+    {
+        return [
+            ['SGR', [
+                "id" => "10",
+                "shortname" => "SGR",
+                "name" => "Selangor",
+                "iso" => "MY-10"
+            ]]
+        ];
+    }
+
+    public function stateIdDataProvider()
+    {
+        return [
+            [5, [
+                "id" => "5",
+                "shortname" => "NSN",
+                "name" => "Negeri Sembilan",
+                "iso" => "MY-05"
+            ]]
+        ];
+    }
+
+    public function stateIsoDataProvider()
+    {
+        return [
+            ['MY-06', [
+                "id" => "6",
+                "shortname" => "PHG",
+                "name" => "Pahang",
+                "iso" => "MY-06"
+            ]]
+        ];
     }
 }

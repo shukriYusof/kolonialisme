@@ -2,23 +2,73 @@
 namespace Shukriyusof\Kolonialisme;
 
 use PHPUnit\Framework\TestCase;
-use Shukriyusof\Kolonialisme\District;
 
 final class DistrictTest extends TestCase
 {
-    public function testGetAllDistricts(){
-        return $this->assertIsArray(District::getAllDistricts());
+    public function testGetAllDistrictsReturnsArray(): void
+    {
+        $this->assertIsArray(District::getAllDistricts());
     }
 
-    public function testGetAllDistrictsById(){
-        return $this->assertIsArray(District::getDistrictById(59));
+    /**
+     * @dataProvider districtIdProvider
+     */
+    public function testGetDistrictByIdReturnsArray(int $districtId): void
+    {
+        $this->assertIsArray(District::getDistrictById($districtId));
     }
 
-    public function testGetAllDistrictsByName(){
-        return $this->assertIsArray(District::getDistrictByName("PPD KUBANG PASU"));
+    /**
+     * @dataProvider districtNameProvider
+     */
+    public function testGetDistrictByNameReturnsArray(string $districtName): void
+    {
+        $this->assertIsArray(District::getDistrictByName($districtName));
     }
 
-    public function testGetAllDistrictsByStateId(){
-        return $this->assertIsArray(District::getDistrictByStateId(2));
+    /**
+     * @dataProvider stateIdProvider
+     */
+    public function testGetDistrictByStateIdReturnsArray(int $stateId): void
+    {
+        $this->assertIsArray(District::getDistrictByStateId($stateId));
+    }
+
+    /**
+     * False negative test case
+     */
+    public function testGetDistrictByNonExistentNameReturnsEmptyArray(): void
+    {
+        $nonExistentName = "NonExistentDistrictName";
+        $result = District::getDistrictByName($nonExistentName);
+
+        $this->assertIsArray($result);
+        $this->assertEmpty($result);
+    }
+
+    // Data Providers
+
+    public function districtIdProvider(): array
+    {
+        return [
+            [59],
+            // Add more test cases as needed
+        ];
+    }
+
+    public function districtNameProvider(): array
+    {
+        return [
+            ["PPD KUBANG PASU"],
+            // Add more test cases as needed
+        ];
+    }
+
+    public function stateIdProvider(): array
+    {
+        return [
+            [2],
+            // Add more test cases as needed
+        ];
     }
 }
